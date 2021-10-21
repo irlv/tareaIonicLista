@@ -50,6 +50,7 @@ export class RegisterPage implements OnInit {
 
   async guardar(_form: NgForm){
     if(this.user.contrasena == this.user.contrasenaVerif){
+      alert("Listo")
       console.log(this.user)
     }else{
       alert("las contraseñas no concuerda")
