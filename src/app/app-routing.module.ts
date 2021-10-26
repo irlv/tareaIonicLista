@@ -23,6 +23,30 @@ const routes: Routes = [
     path: 'recuperacion-correo',
     loadChildren: () => import('./pages/recuperacion-correo/recuperacion-correo.module').then( m => m.RecuperacionCorreoPageModule)
   },
+  {
+    path: 'carousel',
+    loadChildren: () => import('./pages/carousel/carousel.module').then( m => m.CarouselPageModule)
+  },
+  {
+    path: 'read-code',
+    loadChildren: () => import('./pages/read-code/read-code.module').then( m => m.ReadCodePageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
+  },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./pages/notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'edit-user',
+    loadChildren: () => import('./pages/edit-user/edit-user.module').then( m => m.EditUserPageModule)
+  },
 ];
 
 @NgModule({

@@ -10,24 +10,29 @@
 </ion-header>
 
 <ion-content style="text-align: center !important;">
-  <form class="example-form" #formUser="ngForm">
-    <br><br>
-    <ion-row>
-      <ion-col>
-        
-        <mat-form-field class="example-full-width" >
-          <mat-label>Correo Electronico</mat-label>
-          <input type="email" #emailCount matInput name="email" placeholder="Correo Electronico"
-          [(ngModel)]="user.email" 
-          (keyup)="onKeyEmail($event)"
-          required>
-          <mat-hint aling="end">{{emailCount.value.length}}</mat-hint>
-        </mat-form-field>
+  <ion-card>
+    <form class="example-form" #formUser="ngForm">
+      <br><br>
+      <ion-row>
+        <ion-col>
+          
+          
+          <mat-form-field class="example-full-width" >
+            <mat-label style="color: white;">Correo Electronico</mat-label>
+            <input  type="email" #emailCount matInput name="email" placeholder="Correo Electronico"
+            [(ngModel)]="user.email" 
+            (keyup)="onKeyEmail($event)"
+            required>
+            <mat-hint aling="end">{{emailCount.value.length}}</mat-hint>
+          </mat-form-field>
+  
+          <br><br>
+          <ion-button (click)="save(formUser)">Enviar Correo</ion-button>
+  
+        </ion-col>
+      </ion-row>
+    </form>
 
-        <br><br>
-        <ion-button (click)="save(formUser)">Enviar Correo</ion-button>
-
-      </ion-col>
-    </ion-row>
-  </form>
+  </ion-card>
+  
 </ion-content>
