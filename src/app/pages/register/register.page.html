@@ -20,7 +20,7 @@
       <ion-col>
         
         <mat-form-field class="example-full-width" >
-          <mat-label>Usuario</mat-label>
+          <mat-label style="color: white;">Usuario</mat-label>
           <input type="text" #usuarioCount matInput name="usuario" [(ngModel)]="user.usuario" 
           maxlength="30"
           minlength="8"
@@ -32,17 +32,17 @@
 
 
         <mat-form-field class="example-full-width" >
-          <mat-label>Correo Electronico</mat-label>
+          <mat-label style="color: white;">Correo Electronico</mat-label>
           <input type="email" #emailCount matInput name="email"
           placeholder="Correo Electronico"
           [(ngModel)]="user.email" 
-          (keyup)="onKeyContra($event)"
+          (keyup)="onKeyCorreo($event)"
           required>
           <mat-hint aling="end">{{emailCount.value.length}}</mat-hint>
         </mat-form-field>
 
         <mat-form-field class="example-full-width" >
-          <mat-label>Contraseña</mat-label>
+          <mat-label style="color: white;">Contraseña</mat-label>
           <input type="password" #contraCount matInput name="contrasena" [(ngModel)]="user.contrasena" 
           maxlength="20"
           minlength="8"
@@ -53,7 +53,7 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width" >
-          <mat-label>Contraseña</mat-label>
+          <mat-label style="color: white;">Contraseña</mat-label>
           <input type="password" #contraVeriCount matInput name="contrasenaVerif" [(ngModel)]="user.contrasenaVerif" 
           maxlength="20"
           minlength="8"
@@ -64,7 +64,8 @@
         </mat-form-field>
 
         <br><br>
-        <ion-button routerLink="/home" (click)="guardar(formUser)">Guardar</ion-button>
+        <ion-button  (click)="guardar(formUser) " [disabled]=" user.verificacionEmail==false ||
+        user.verificacionUsuario==false || user.verificacionContra == false || user.verificacionContraVefi==false">Guardar</ion-button>
 
       </ion-col>
     </ion-row>

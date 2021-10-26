@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,23 +9,40 @@ import { NgForm } from '@angular/forms';
 })
 export class RegisterPage implements OnInit {
 
-  constructor() { }
+  constructor( private router:Router) { }
   user = {
     usuario: '',
     email : '',
     contrasena: '',
-    contrasenaVerif : ''
+    contrasenaVerif : '',
+    verificacionEmail:false,
+    verificacionUsuario:false,
+    verificacionContra:false,
+    verificacionContraVefi:false,
   }
+  alertaUsuario="";
+  alertaContra="";
+  alertaPassword="";
+  alertaPasswordVeri="";
 
   ngOnInit() {
   }
 
-  onKeyContra(event: any){
+  onKeyCorreo(event: any){
     let newValue = event.target.value;
     console.log(newValue);
-    let regExp = new RegExp('^[A-Za-z0-9@,._*-]+$');
+    let regExp = new RegExp("^[A-Za-z0-9-@.#-$%&'*_]*$");
     if(!regExp.test(newValue)){
       event.target.value = newValue.slice(0, -1);
+    }
+    let email = new RegExp("[a-zA-Z0-9.#$%&'*_-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$");
+    if(!email.test(this.user.email)){
+      
+      this.user.verificacionEmail =false;
+    }else{
+  
+      console.log("Hola5")
+      this.user.verificacionEmail = true;
     }
   }
 
@@ -35,23 +53,58 @@ export class RegisterPage implements OnInit {
     if(!regExp.test(newValue)){
       event.target.value = newValue.slice(0, -1);
     }
+    let usuarios = new RegExp("^[A-Za-z0-9]*$");
+    if(!usuarios.test(this.user.usuario)){
+      
+      this.user.verificacionUsuario = false;
+    }else{
+      
+      this.user.verificacionUsuario = true;
+      console.log("Hola9")
+    }
   }
 
 
   onKeyPassword(event: any){
     let newValue = event.target.value;
     console.log(newValue);
-    let regExp = new RegExp('^[A-Za-z0-9-*#&$%]+$');
+    let regExp = new RegExp('^[A-Za-z0-9*#&$%]*$');
     if(!regExp.test(newValue)){
       event.target.value = newValue.slice(0, -1);
     }
+
+    let password = new RegExp("(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[*#&$%])");
+
+    if(event.target.name=="contrasena"){
+      if(!password.test(this.user.contrasena)){
+        this.user.verificacionContra = false;
+      }else{
+        console.log("Hola")
+        this.user.verificacionContra = true;
+      }
+    }
+    if(event.target.name=="contrasenaVerif"){
+      if(!password.test(this.user.contrasenaVerif)){
+        this.user.verificacionContraVefi = false;
+      }else{
+        console.log("Hola3")
+        this.user.verificacionContraVefi = true;
+      }
+    }
+    
   }
 
 
   async guardar(_form: NgForm){
     if(this.user.contrasena == this.user.contrasenaVerif){
-      alert("Listo")
-      console.log(this.user)
+      if(this.user.contrasena.length>=8 && this.user.contrasenaVerif.length>=8 && this.user.usuario.length>=8){
+        alert("Agregado")
+       console.log(this.user)
+       this.router.navigate(['/home']);
+      }else{
+        alert("Tamaño de caracteres menores")
+      }
+      
     }else{
       alert("las contraseñas no concuerda")
     }
