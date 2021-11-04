@@ -56,6 +56,7 @@ export class EditUserPage implements OnInit {
     let regExp = new RegExp("^[A-Za-z? ]+$");
     if(!regExp.test(newValue)){
       event.target.value = newValue.slice(0, -1);
+      this.user.verificacionUsuario = true;
     }
 
     let usuarios = new RegExp("^[A-Za-z? ]+$");
@@ -92,15 +93,17 @@ export class EditUserPage implements OnInit {
  onKeyTelefono(event: any){
   let newValue = event.target.value;
   console.log(newValue);
-  let regExp = new RegExp("^[0-9]*$");
+  let regExp = new RegExp("[0-9]");
   if(!regExp.test(newValue)){
     event.target.value = newValue.slice(0, -1);
   }
 
   let telefono = new RegExp("^[0-9]*$");
   if(!telefono.test(this.user.telefono)){
-    this.alertaTelefono = "invalido";
-    this.user.verificacionTelefono =false;
+      event.target.value = newValue.slice(0, -1);
+      this.alertaTelefono = "invalido";
+      this.user.verificacionTelefono =false;
+  
   }else{
     this.alertaTelefono = "valido";
     this.user.verificacionTelefono = true;

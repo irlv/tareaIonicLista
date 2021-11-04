@@ -51,14 +51,14 @@
              <mat-label style="color: white;">Telefono</mat-label>
              <input matInput #telefonoCount placeholder="Telefono" type="text"
              [(ngModel)]="user.telefono" (keyup)="onKeyTelefono($event)" name="Telefono"
-              required>
+             onkeypress="if(this.value.length == 10 ) return false;"required>
               <mat-hint align="end">{{telefonoCount.value.length}}</mat-hint>
               
            </mat-form-field> 
            <br><br>
 
            <ion-button  (click)="guardar(formUser)"  
-          [disabled]="user.verificacionEmail==false ||user.verificacionUsuario==false || user.verificacionPaterno == false 
+          [disabled]="user.telefono.length !=10||user.verificacionEmail==false ||user.verificacionUsuario==false || user.verificacionPaterno == false 
                      || user.verificacionMaterno==false  || user.verificacionTelefono==false">
             Guardar
           </ion-button>
