@@ -2,7 +2,12 @@
   "name": "AppMovil",
   "version": "0.0.1",
   "author": "Ionic Framework",
+  "engines": {
+    "node": "14.x"
+  },
   "homepage": "https://ionicframework.com/",
+  
+  
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -68,4 +73,7 @@
     
   },
   "description": "An Ionic project"
+  
+  
+  
 }
